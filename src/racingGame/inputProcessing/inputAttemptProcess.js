@@ -1,3 +1,3 @@
-export default function inputAttempProcess(attempt){
+export default function inputAttemptProcess(attempt){
     return Number(attempt);
 }
