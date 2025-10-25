@@ -3,6 +3,7 @@ import inputCarProcess from './racingGame/inputProcessing/inputCarProcess.js';
 import inputAttemptProcess from './racingGame/inputProcessing/inputAttemptProcess.js';
 import validateCarInput from './racingGame/validation/validateCarInput.js';
 import validateAttemptInput from './racingGame/validation/validateAttemptInput.js';
+import racingGame from './racingGame/core/index.js';
 class App {
   async run() {
     try{
@@ -11,8 +12,9 @@ class App {
       const inputAttempt = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
       validateAttemptInput(inputAttempt);
       
-      const carObjects = inputCarProcess(inputCarString);
+      const carObjectList = inputCarProcess(inputCarString);
       const attemptNumber = inputAttemptProcess(inputAttempt);
+      racingGame({attemptNumber, carObjectList});
     }
     catch(e){
       Console.print(e.message)
