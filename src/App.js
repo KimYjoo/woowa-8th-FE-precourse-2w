@@ -3,8 +3,8 @@ import inputCarProcess from './racingGame/inputProcessing/inputCarProcess.js';
 import inputAttemptProcess from './racingGame/inputProcessing/inputAttemptProcess.js';
 import validateCarInput from './racingGame/validation/validateCarInput.js';
 import validateAttemptInput from './racingGame/validation/validateAttemptInput.js';
-import racingGame from './racingGame/gameProgress/index.js';
-import getRaceWinner from './racingGame/gameResult/index.js';
+import judgeWinner from './racingGame/gameProgress/judgeWinner.js';
+import raceStart from './racingGame/gameProgress/raceStart.js';
 class App {
   async run() {
     try{
@@ -15,12 +15,12 @@ class App {
       
       const carObjectList = inputCarProcess(inputCarString);
       const attemptNumber = inputAttemptProcess(inputAttempt);
-      racingGame({attemptNumber, carObjectList});
-      getRaceWinner(carObjectList);
+      raceStart({attemptNumber, carObjectList});
+      judgeWinner(carObjectList);
     }
-    catch(e){
-      Console.print(e.message)
-      throw(e)
+    catch(error){
+      Console.print(error.message)
+      throw(error)
     }
     
   }

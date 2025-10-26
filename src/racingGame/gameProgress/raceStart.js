@@ -1,6 +1,6 @@
 import { Console, MissionUtils } from "@woowacourse/mission-utils"
 
-export default function racingGame({attemptNumber, carObjectList}){
+export default function raceStart({attemptNumber, carObjectList}){
     // Console.print('실행 결과');
     for(let i = 0; i < attemptNumber; i++){
         carObjectList.forEach((car) => {
