@@ -15,8 +15,12 @@ class App {
       
       const carObjectList = inputCarProcess(inputCarString);
       const attemptNumber = inputAttemptProcess(inputAttempt);
+      
+      Console.print('실행 결과');
       raceStart({attemptNumber, carObjectList});
-      judgeWinner(carObjectList);
+      const winnerString = judgeWinner(carObjectList);
+
+      Console.print(`최종 우승자 : ${winnerString}`);
     }
     catch(error){
       Console.print(error.message)
