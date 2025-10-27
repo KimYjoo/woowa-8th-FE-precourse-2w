@@ -1,3 +1,4 @@
+import { MissionUtils } from "@woowacourse/mission-utils"
 import Car from "./Car.js";
 
 export default class RacingGame {
@@ -5,7 +6,7 @@ export default class RacingGame {
         this.carObjects = carNames.map((name) => new Car({carName: name.trim()}));
     }
     runSingleAttempt(){
-        this.carObjects.forEach((car) => car.move());
+        this.carObjects.forEach((car) => car.move(MissionUtils.Random.pickNumberInRange(0, 9)));
     }
     getAttemptResult(){
         return this.carObjects.map((car) => car.getCarProgress());
