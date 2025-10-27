@@ -15,5 +15,8 @@ function inputCarProcess(rawCarString){
 export async function readAttemptCount(){
     const attemptCount =  await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
     Validation.validateAttemptInput(attemptCount);
-    return attemptCount;
+    return inputAttemptProcess(attemptCount);
+}
+function inputAttemptProcess(attempt){
+    return Number(attempt);
 }

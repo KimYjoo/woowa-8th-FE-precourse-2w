@@ -1,8 +1,3 @@
-import { Console } from '@woowacourse/mission-utils'
-import inputCarProcess from './domain/inputProcessing/inputCarProcess.js';
-import inputAttemptProcess from './domain/inputProcessing/inputAttemptProcess.js';
-import judgeWinner from './domain/gameProgress/judgeWinner.js';
-import raceStart from './domain/gameProgress/raceStart.js';
 import * as InputView from './view/InputView.js';
 import * as OutputView from './view/OutputView.js';
 import RacingGame from './domain/RacingGame.js';
@@ -10,14 +5,13 @@ import RacingGame from './domain/RacingGame.js';
 class App {
   async run() {
     try{
-      const inputCarString = await InputView.readCarNames();
-      const inputAttempt = await InputView.readAttemptCount();
+      const carList = await InputView.readCarNames();
+      const attemptCount = await InputView.readAttemptCount();
       
-      const attemptNumber = inputAttemptProcess(inputAttempt);
+      const raceGame = new RacingGame(carList);
 
-      Console.print('실행 결과');
-      const raceGame = new RacingGame(inputCarString);
-      for(let i = 0; i < attemptNumber; i++){
+      OutputView.printRaceHeader();
+      for(let i = 0; i < attemptCount; i++){
         raceGame.runSingleAttempt();
         OutputView.printSingleAttemptResult(raceGame.getAttemptResult());
       }
@@ -25,7 +19,7 @@ class App {
       OutputView.printWinners(raceWinner);
     }
     catch(error){
-      Console.print(error.message)
+      OutputView.printErrorMessage(error);
       throw(error)
     }
     
