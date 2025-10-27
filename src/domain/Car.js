@@ -8,10 +8,7 @@ export default class Car {
     move(){
         if(MissionUtils.Random.pickNumberInRange(0, 9) >= 4) this.progress += 1;
     }
-    progressToHyphens(){
-        return Array.from({length:this.progress},(v, k) => ('-')).join('');
-    }
-    printProgress(){
-        Console.print(`${this.carName} : ${this.progressToHyphens()}`);
+    getCarProgress(){
+        return { carName:this.carName, progress:this.progress };
     }
 }

@@ -5,6 +5,7 @@ import judgeWinner from './domain/gameProgress/judgeWinner.js';
 import raceStart from './domain/gameProgress/raceStart.js';
 import * as InputView from './view/InputView.js';
 import * as OutputView from './view/OutputView.js';
+import RacingGame from './domain/RacingGame.js';
 
 class App {
   async run() {
@@ -12,14 +13,16 @@ class App {
       const inputCarString = await InputView.readCarNames();
       const inputAttempt = await InputView.readAttemptCount();
       
-      const carObjectList = inputCarProcess(inputCarString);
       const attemptNumber = inputAttemptProcess(inputAttempt);
 
       Console.print('실행 결과');
-      raceStart({attemptNumber, carObjectList});
-      const winnerString = judgeWinner(carObjectList);
-
-      OutputView.printWinners(winnerString);
+      const raceGame = new RacingGame(inputCarString);
+      for(let i = 0; i < attemptNumber; i++){
+        raceGame.runSingleAttempt();
+        OutputView.printSingleAttemptResult(raceGame.getAttemptResult());
+      }
+      const raceWinner = raceGame.judgeWinner();
+      OutputView.printWinners(raceWinner);
     }
     catch(error){
       Console.print(error.message)
