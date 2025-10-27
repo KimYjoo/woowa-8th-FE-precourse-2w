@@ -23,8 +23,13 @@ export function validateAttemptInput(attemptInput) {
 
   const numberAttempt = Number(attemptInput);
   // 시도 입력값이 숫자가 아닌 경우
-  if (!isFinite(numberAttempt))
+  if (!Number.isFinite(numberAttempt))
     throw Error(`${ErrorMessage.PREFIX} ${ErrorMessage.ATTEMPT_INPUT_NAN}`);
+  // 시도 입력값이 소수인 경우
+  if (!Number.isInteger(numberAttempt))
+    throw Error(
+      `${ErrorMessage.PREFIX} ${ErrorMessage.ATTEMPT_INPUT_ISINTEGER}`
+    );
   // 시도 입력값이 정해진 범위를 넘은 경우
   if (
     numberAttempt < GameSettings.MIN_ATTEMPT ||

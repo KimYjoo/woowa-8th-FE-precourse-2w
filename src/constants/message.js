@@ -14,4 +14,5 @@ export const ErrorMessage = Object.freeze({
   ATTEMPT_INPUT_NAN: "시도 횟수 입력값이 숫자가 아닙니다.",
   ATTEMPT_INPUT_OVER_LIMIT:
     "입력된 시도 횟수값이 제한된 범위를 초과하였습니다. (1 ~ 5)",
+  ATTEMPT_INPUT_ISINTEGER: "시도 횟수 값이 소수입니다.",
 });
