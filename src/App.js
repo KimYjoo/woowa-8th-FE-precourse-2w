@@ -1,26 +1,25 @@
 import { Console } from '@woowacourse/mission-utils'
-import inputCarProcess from './racingGame/inputProcessing/inputCarProcess.js';
-import inputAttemptProcess from './racingGame/inputProcessing/inputAttemptProcess.js';
-import validateCarInput from './racingGame/validation/validateCarInput.js';
-import validateAttemptInput from './racingGame/validation/validateAttemptInput.js';
-import judgeWinner from './racingGame/gameProgress/judgeWinner.js';
-import raceStart from './racingGame/gameProgress/raceStart.js';
+import inputCarProcess from './domain/inputProcessing/inputCarProcess.js';
+import inputAttemptProcess from './domain/inputProcessing/inputAttemptProcess.js';
+import judgeWinner from './domain/gameProgress/judgeWinner.js';
+import raceStart from './domain/gameProgress/raceStart.js';
+import * as InputView from './view/InputView.js';
+import * as OutputView from './view/OutputView.js';
+
 class App {
   async run() {
     try{
-      const inputCarString = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
-      validateCarInput(inputCarString);
-      const inputAttempt = await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
-      validateAttemptInput(inputAttempt);
+      const inputCarString = await InputView.readCarNames();
+      const inputAttempt = await InputView.readAttemptCount();
       
       const carObjectList = inputCarProcess(inputCarString);
       const attemptNumber = inputAttemptProcess(inputAttempt);
-      
+
       Console.print('실행 결과');
       raceStart({attemptNumber, carObjectList});
       const winnerString = judgeWinner(carObjectList);
 
-      Console.print(`최종 우승자 : ${winnerString}`);
+      OutputView.printWinners(winnerString);
     }
     catch(error){
       Console.print(error.message)
