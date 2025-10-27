@@ -1,19 +1,21 @@
 import { Console } from '@woowacourse/mission-utils'
 import * as Validation from './Validation.js';
+import { Message } from '../constants/message.js';
+import { GameSettings } from '../constants/gameSettings.js';
 
 
 export async function readCarNames(){
-    const carNames = await Console.readLineAsync('경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n');
+    const carNames = await Console.readLineAsync(Message.INPUT_CAR);
     Validation.validateCarInput(carNames);
     return inputCarProcess(carNames);
 }
 function inputCarProcess(rawCarString){
     const strippedString = rawCarString.trim();
-    const splittedArray = strippedString.split(',');
+    const splittedArray = strippedString.split(GameSettings.CAR_NAME_DELIMITER);
     return splittedArray;
 }
 export async function readAttemptCount(){
-    const attemptCount =  await Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    const attemptCount =  await Console.readLineAsync(Message.INPUT_ATTEMPT);
     Validation.validateAttemptInput(attemptCount);
     return inputAttemptProcess(attemptCount);
 }

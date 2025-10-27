@@ -1,15 +1,19 @@
-export function validateCarInput( carInput ){
-    const regexMatchSpecialCharacter = /[!@#$%^&*\(\)_+~\`;:\"\'\{\}\[\]<>.\/?\\\-=|]/g
-    const regexCheckFormat = /,\s*,|^,|,$/g
+import { Regex } from "../constants/regex.js";
+import { ErrorMessage } from "../constants/message.js";
 
-    if( !carInput ) throw Error('[ERROR] 자동차 이름 입력값이 없습니다.');
-    if( regexMatchSpecialCharacter.test(carInput) ) throw Error('[ERROR] 자동차 이름엔 특수문자가 포함될 수 없습니다.');
-    if( regexCheckFormat.test(carInput) ) throw Error('[ERROR] 입력값의 입력 형식을 확인해주세요.');
+export function validateCarInput( carInput ){
+
+    if( !carInput ) throw Error(`${ErrorMessage.PREFIX} ${ErrorMessage.CAR_INPUT_NON}`);
+    if( Regex.MATCH_CAR_SPECIAL_CHARACTER.test(carInput) ) throw Error(`${ErrorMessage.PREFIX} ${ErrorMessage.CAR_INPUT_SPECIAL_CHARACTER}`);
+    if( Regex.CHECK_CAR_FORMAT.test(carInput) ) throw Error(`${ErrorMessage.PREFIX} ${ErrorMessage.CAR_INPUT_FORM}`);
+
 }
 
 export function validateAttemptInput( attemptInput ){
-    if( !attemptInput ) throw Error('[ERROR] 시도 횟수를 입력하지 않음');
+
+    if( !attemptInput ) throw Error(`${ErrorMessage.PREFIX} ${ErrorMessage.ATTEMPT_INPUT_NON}`);
     const numberAttempt = Number(attemptInput);
-    if( !isFinite(numberAttempt) ) throw Error('[ERROR] 시도 횟수 입력값이 숫자가 아닙니다.');
-    if( numberAttempt < 1 || numberAttempt > 5 ) throw Error('[ERROR] 입력된 시도 횟수값이 제한된 범위를 초과하였습니다. (1 ~ 5)');
+    if( !isFinite(numberAttempt) ) throw Error(`${ErrorMessage.PREFIX} ${ErrorMessage.ATTEMPT_INPUT_NAN}`);
+    if( numberAttempt < 1 || numberAttempt > 5 ) throw Error(`${ErrorMessage.PREFIX} ${ErrorMessage.ATTEMPT_INPUT_OVER_LIMIT}`);
+
 }
