@@ -1,29 +1,27 @@
-import * as InputView from './view/InputView.js';
-import * as OutputView from './view/OutputView.js';
-import RacingGame from './domain/RacingGame.js';
+import * as InputView from "./view/InputView.js";
+import * as OutputView from "./view/OutputView.js";
+import RacingGame from "./domain/RacingGame.js";
 
 class App {
   async run() {
-    try{
+    try {
       const carList = await InputView.readCarNames();
       const attemptCount = await InputView.readAttemptCount();
-      
+
       const raceGame = new RacingGame(carList);
 
       OutputView.printRaceHeader();
-      for(let i = 0; i < attemptCount; i++){
+      for (let i = 0; i < attemptCount; i++) {
         raceGame.runSingleAttempt();
         OutputView.printSingleAttemptResult(raceGame.carStatusList);
       }
       const raceWinner = raceGame.judgeWinner();
-      
+
       OutputView.printWinners(raceWinner);
-    }
-    catch(error){
+    } catch (error) {
       OutputView.printErrorMessage(error);
-      throw(error)
+      throw error;
     }
-    
   }
 }
 

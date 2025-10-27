@@ -1,7 +1,10 @@
 export const GameSettings = Object.freeze({
-    PROGRESS_VISUAL : '-',
-    VISUAL_SPACE : '',
+  MAX_ATTEMPT: 5,
+  MIN_ATTEMPT: 1,
 
-    CAR_NAME_DELIMITER : ',',
-    STRINGIZE_DELIMITER : ', '
+  PROGRESS_VISUAL: "-",
+  VISUAL_SPACE: "",
+
+  CAR_NAME_DELIMITER: ",",
+  STRINGIZE_DELIMITER: ", ",
 });
