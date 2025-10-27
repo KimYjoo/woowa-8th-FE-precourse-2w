@@ -13,9 +13,10 @@ class App {
       OutputView.printRaceHeader();
       for(let i = 0; i < attemptCount; i++){
         raceGame.runSingleAttempt();
-        OutputView.printSingleAttemptResult(raceGame.getAttemptResult());
+        OutputView.printSingleAttemptResult(raceGame.carStatusList);
       }
       const raceWinner = raceGame.judgeWinner();
+      
       OutputView.printWinners(raceWinner);
     }
     catch(error){
