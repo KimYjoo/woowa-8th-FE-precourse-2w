@@ -1,3 +1,5 @@
+import { GameSettings } from "./gameSettings";
+
 export const Message = Object.freeze({
   INPUT_CAR: "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n",
   INPUT_ATTEMPT: "시도할 횟수는 몇 회인가요?\n",
@@ -7,6 +9,7 @@ export const Message = Object.freeze({
 
 export const ErrorMessage = Object.freeze({
   PREFIX: "[ERROR]",
+  BIG_INPUT: `너무 큰 입력값이 들어왔습니다.(${GameSettings.MAX_INPUT}자 제한)`,
   CAR_INPUT_NON: "자동차 이름 입력값이 없습니다.",
   CAR_INPUT_SPECIAL_CHARACTER: "자동차 이름엔 특수문자가 포함될 수 없습니다.",
   CAR_INPUT_FORM: "입력값의 입력 형식을 확인해주세요.",

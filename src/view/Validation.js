@@ -6,6 +6,9 @@ export function validateCarInput(carInput) {
   // 자동차 입력값이 없을 경우
   if (!carInput)
     throw Error(`${ErrorMessage.PREFIX} ${ErrorMessage.CAR_INPUT_NON}`);
+  // 자동차 입력값이 너무 큰 경우
+  if (carInput.length < GameSettings.MAX_INPUT)
+    throw Error(`${ErrorMessage.PREFIX} ${ErrorMessage.BIG_INPUT}`);
   // 자동차 입력값에 특수 문자가 포함됐을 경우
   if (Regex.MATCH_CAR_SPECIAL_CHARACTER.test(carInput))
     throw Error(
@@ -20,6 +23,9 @@ export function validateAttemptInput(attemptInput) {
   // 시도 입력값이 없을 경우
   if (!attemptInput)
     throw Error(`${ErrorMessage.PREFIX} ${ErrorMessage.ATTEMPT_INPUT_NON}`);
+  // 시도 입력값이 너무 큰 경우
+  if (attemptInput.length < GameSettings.MAX_INPUT)
+    throw Error(`${ErrorMessage.PREFIX} ${ErrorMessage.BIG_INPUT}`);
 
   const numberAttempt = Number(attemptInput);
   // 시도 입력값이 숫자가 아닌 경우
