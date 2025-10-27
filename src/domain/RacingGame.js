@@ -10,7 +10,7 @@ export default class RacingGame {
     );
   }
 
-  get carStatusList() {
+  getCarStatusList() {
     return this.#carObjects.map((car) => car.carStatus);
   }
 
